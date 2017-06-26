@@ -20,6 +20,7 @@ export default class ImagesUploader extends Component {
 
 	static propTypes = {
 		url: PropTypes.string.isRequired,
+		headers: PropTypes.object,
 		classNamespace: PropTypes.string,
 		inputId: PropTypes.string,
 		label: PropTypes.string,
@@ -78,6 +79,7 @@ export default class ImagesUploader extends Component {
 	}
 
 	static defaultProps = {
+		headers:{},
 		classNames: {},
 		styles: {},
 		multiple: true,
@@ -302,6 +304,7 @@ export default class ImagesUploader extends Component {
 				let response = await fetch(url, {
 					method: 'POST',
 					body: imageFormData,
+					headers: this.props.headers
 				});
 
 				if (response && response.status && response.status === 200) {
